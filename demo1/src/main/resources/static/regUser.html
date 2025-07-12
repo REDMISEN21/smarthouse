@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<script>
+    function Login() {
+        location.href = "/login.html";
+    }
+    async function RegUser(){
+
+        var user_no = document.getElementById("user_no").value;
+        var user_pwd = document.getElementById("user_pwd").value;
+        var re_user_pwd = document.getElementById("re_user_pwd").value;
+
+        if (user_no === ""){
+            window.alert("用户名不能为空！");
+            return;
+        }
+
+        if (user_pwd === ""){
+            window.alert("密码不能为空！");
+            return;
+        }
+
+        if (user_pwd !== re_user_pwd){
+            window.alert("两次密码输入不一致！");
+            return;
+        }
+
+        // ✅ 使用 await 等待 fetch 完成
+        try{
+            const response = await fetch(`/api/userinfo/RegUser?user_no=${user_no}&user_pwd=${user_pwd}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: `user_no=${encodeURIComponent(user_no)}&user_pwd=${encodeURIComponent(user_pwd)}`
+            })
+
+            const data = await response.json();
+
+            if (data.success === true){
+                alert(data.message)
+                window.location.href = "index.html";
+            }
+            else{
+                alert(data.message)
+            }
+        }
+        catch (err){
+            console.error("登录失败:", err);
+            alert(data.message);
+        }
+    }
+
+</script>
+<body>
+<form>
+    <div style="text-align: center;margin-top: 400px">
+        <p style="font-size: 50px">欢迎注册</p>
+    </div>
+    <div style="text-align: center">
+        <label style="font-size: 25px">用户名：</label>
+        <input type="text" name="user_no" id="user_no" placeholder="请输入用户名" style="width: 250px;height: 50px;border-radius: 20px;border: 0;font-size: 20px;background-color: #F8F7F7">
+    </div>
+    <div style="text-align: center;margin: 40px 0">
+        <label style="margin-left: 16px;font-size: 25px">密码：</label>
+        <input type="password" name="user_pwd" id="user_pwd" placeholder="请输入密码" style="width: 250px;height: 50px;border-radius: 20px;border: 0;font-size: 20px;background-color: #F8F7F7">
+    </div>
+    <div style="text-align: center;margin: 40px 0">
+        <label style="margin-left: -35px;font-size: 25px">重复密码：</label>
+        <input type="password" name="re_user_pwd" id="re_user_pwd" placeholder="请再次输入密码" style="width: 250px;height: 50px;border-radius: 20px;border: 0;font-size: 20px;background-color: #F8F7F7">
+    </div>
+    <div style="text-align: center;margin: 20px 0">
+        <input type="button" value="注册" onclick="RegUser()" style="width: 200px;height: 80px;font-size: 20px;border-radius: 30px; border: 0">
+        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+        <input type="button" value="返回登录" onclick="Login()" style="width: 200px;height: 80px;font-size: 20px;border-radius: 30px;border: 0">
+    </div>
+</form>
+</body>
+</html>
