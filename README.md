@@ -10,7 +10,7 @@
     <header>
         <div class="container">
             <h1>你好，欢迎来到我的个人主页</h1>
-            <p>我是 <strong>你的名字</strong>，一个 Web 开发者。</p>
+            <p>我是 <strong>鸿米森</strong>，一个 Web 开发者。</p>
         </div>
     </header>
 
