@@ -43,7 +43,6 @@
             <ul>
                 <li>邮箱: 3555046207@qq.com</li>
                 <li>GitHub: <a href="https://github.com/REDMISEN21" target="_blank">https://github.com/REDMISEN21</a></li>
-                <li>Youtobe: <a href="https://github.com/REDMISEN21" target="_blank">https://github.com/REDMISEN21</a></li>
             </ul>
         </div>
     </section>
